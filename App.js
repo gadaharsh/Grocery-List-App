@@ -16,11 +16,14 @@ import Item from "./components/Item";
 export default function App() {
   const [item, setItem] = useState();
   const [allItems, setAllItems] = useState([]);
+  const [filterItems,setFilterItems] = useState([]);
+  const [search, setSearch] = useState('');
 
   const addItem = () => {
     Keyboard.dismiss();
-    console.log(item);
+    // console.log(item);
     setAllItems([...allItems, item]);
+    setFilterItems(allItems);
     setItem(null);
   };
 
@@ -28,13 +31,40 @@ export default function App() {
     let itemsCopy = [...allItems];
     itemsCopy.splice(index, 1);
     setAllItems(itemsCopy);
+    setFilterItems(itemsCopy);
   };
+
+  const searchFilter = (text) => {
+    if(text){
+      const newData = allItems.filter((item)=>{
+        const itemData = item;
+        const textData = text;
+        return itemData.indexOf(textData) > -1;
+      })
+      setFilterItems(newData);
+      setSearch(text);
+    }
+      else{
+        setFilterItems(allItems)
+        setSearch(text);
+      }
+    }
+  
 
   return (
     <View style={styles.container}>
-      {/* GRocer List */}
+      {/* Grocery List */}
       <View style={styles.list}>
         <Text style={styles.title}>Grocery List</Text>
+
+        {/* Search Bar */}
+        {/* <TextInput
+          style={styles.input}
+          placeholder={"Search your items"}
+          value={search}
+          onChangeText={(text) => searchFilter(text)}
+        /> */}
+
         <ScrollView style={styles.items}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
