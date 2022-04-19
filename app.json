@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "GroceryList",
+    "name": "Grocery List App",
     "slug": "GroceryList",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "A simple application to note down your grocery details and can also be used as a to-do list .",
+    "githubUrl": "https://github.com/gadaharsh/Grocery-List-App"
   }
 }
